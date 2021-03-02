@@ -38,21 +38,20 @@ pianoKeys.forEach((key) => key.addEventListener('contextmenu', (e) => e.preventD
 pianoKeys.forEach((key) => key.addEventListener('transitionend', removeTransition));
 
 // Key events
-let keySet = new Set();
+let keyState = {};
 
 function handleKeyEvent(e) {
   let key = [...pianoKeys].find((elem) => elem.dataset.letter == e.code.slice(-1));
-  if (key)
-    if (!keySet.has(e.code)) {
-      keySet.add(e.code);
-      playSound(key);
-    }
+  if (!keyState[e.code]) {
+    keyState[e.code] = true;
+    playSound(key);
+  }
 }
 
 window.addEventListener('keydown', handleKeyEvent);
 
 window.addEventListener('keyup', (e) => {
-  keySet.delete(e.code);
+  keyState[e.code] = false;
 });
 
 // Fullscreen
