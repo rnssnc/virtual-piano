@@ -4,16 +4,16 @@ const AUDIO_PATH = `assets/audio`;
 let isClicked = false;
 
 function playSound(e) {
-  let element = e.target || e;
-  let audio = new Audio(`${AUDIO_PATH}/${element.dataset.note}.mp3`);
+  const element = e.target || e;
+  const audio = new Audio(`${AUDIO_PATH}/${element.dataset.note}.mp3`);
   if (!audio) return;
 
-  element.classList.add('piano-key-active');
+  element.classList.toggle('piano-key-active');
   audio.play();
 }
 
 function removeTransition(e) {
-  if (e.propertyName === 'transform') e.target.classList.remove('piano-key-active');
+  if (e.propertyName == 'transform') e.target.classList.remove('piano-key-active');
 }
 
 // Mouse events
@@ -30,7 +30,8 @@ pianoKeys.forEach((key) =>
     handleMouseEvent(e);
   })
 );
-pianoKeys.forEach((key) => key.addEventListener('mouseup', () => (isClicked = false)));
+
+window.addEventListener('mouseup', () => (isClicked = false));
 pianoKeys.forEach((key) => key.addEventListener('mouseover', handleMouseEvent));
 
 pianoKeys.forEach((key) => key.addEventListener('contextmenu', (e) => e.preventDefault()));
@@ -55,7 +56,7 @@ window.addEventListener('keyup', (e) => {
 });
 
 // Fullscreen
-let fullScreenButon = document.querySelector('.fullscreen');
+const fullScreenButon = document.querySelector('.fullscreen');
 
 function toggleFullScreen() {
   if (!document.fullscreenElement) document.documentElement.requestFullscreen();
@@ -65,8 +66,8 @@ function toggleFullScreen() {
 fullScreenButon.addEventListener('click', toggleFullScreen);
 
 // Letters mode
-let lettersButton = document.querySelector('.btn-letters');
-let notesButton = document.querySelector('.btn-notes');
+const lettersButton = document.querySelector('.btn-letters');
+const notesButton = document.querySelector('.btn-notes');
 
 function toggleLetterMode(e) {
   notesButton.classList.toggle('btn-active');
