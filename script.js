@@ -3,8 +3,7 @@ const pianoKeys = document.querySelectorAll('.piano-key');
 const AUDIO_PATH = `assets/audio`;
 let isClicked = false;
 
-function playSound(e) {
-  const element = e.target || e;
+function playSound(element) {
   const audio = new Audio(`${AUDIO_PATH}/${element.dataset.note}.mp3`);
   if (!audio) return;
 
@@ -19,10 +18,8 @@ function removeTransition(e) {
 // Mouse events
 function handleMouseEvent(e) {
   if (!isClicked) return;
-  playSound(e);
+  playSound(e.target);
 }
-
-window.addEventListener('keydown', handleMouseEvent);
 
 pianoKeys.forEach((key) =>
   key.addEventListener('mousedown', (e) => {
@@ -42,10 +39,10 @@ pianoKeys.forEach((key) => key.addEventListener('transitionend', removeTransitio
 let keyState = {};
 
 function handleKeyEvent(e) {
-  let key = [...pianoKeys].find((elem) => elem.dataset.letter == e.code.slice(-1));
-  if (!keyState[e.code]) {
+  let elem = [...pianoKeys].find((elem) => elem.dataset.letter == e.code.slice(-1));
+  if (elem && !keyState[e.code]) {
     keyState[e.code] = true;
-    playSound(key);
+    playSound(elem);
   }
 }
 
@@ -69,11 +66,18 @@ fullScreenButon.addEventListener('click', toggleFullScreen);
 const lettersButton = document.querySelector('.btn-letters');
 const notesButton = document.querySelector('.btn-notes');
 
-function toggleLetterMode(e) {
-  notesButton.classList.toggle('btn-active');
-  lettersButton.classList.toggle('btn-active');
-  pianoKeys.forEach((key) => key.classList.toggle('letter'));
+function toggleLettersMode(e) {
+  notesButton.classList.remove('btn-active');
+  lettersButton.classList.add('btn-active');
+  pianoKeys.forEach((key) => key.classList.add('letter'));
 }
 
-lettersButton.addEventListener('click', toggleLetterMode);
-notesButton.addEventListener('click', toggleLetterMode);
+lettersButton.addEventListener('click', toggleLettersMode);
+
+function toggleNotesMode(e) {
+  notesButton.classList.add('btn-active');
+  lettersButton.classList.remove('btn-active');
+  pianoKeys.forEach((key) => key.classList.remove('letter'));
+}
+
+notesButton.addEventListener('click', toggleNotesMode);
