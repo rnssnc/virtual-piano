@@ -7,7 +7,7 @@
 a:focus {
   outline: 0;
 }
-html {  
+html {
   background: #313940;
 }
 body {
@@ -64,7 +64,7 @@ body {
   transition: 0.3s;
 }
 .btn:not(.btn-active):hover {
-  background-color: #515961; 
+  background-color: #515961;
 }
 .btn:active {
   background-color: #00c9b7;
@@ -134,13 +134,13 @@ body {
   height: 40px;
   font-size: 32px;
   text-align: center;
-  color: #A2ABB3;
+  color: #a2abb3;
   bottom: -60px;
   left: 30px;
   transition: 0.3s;
 }
 .piano-key:hover::before {
-  color: #CBD5DE;
+  color: #cbd5de;
 }
 .piano-key:active::before {
   color: #fff;
@@ -157,13 +157,13 @@ body {
   height: 40px;
   font-size: 32px;
   text-align: center;
-  color: #A2ABB3;
+  color: #a2abb3;
   bottom: -60px;
   left: 30px;
   transition: 0.3s;
 }
 .piano-key:hover::after {
-  color: #CBD5DE;
+  color: #cbd5de;
 }
 .piano-key:active::after {
   color: #fff;

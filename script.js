@@ -7,14 +7,13 @@ function playSound(element) {
   const audio = new Audio(`${AUDIO_PATH}/${element.dataset.note}.mp3`);
   if (!audio) return;
 
-  element.classList.toggle('piano-key-active');
+  element.classList.add('piano-key-active');
   audio.play();
 }
 
 function removeTransition(e) {
-  if (e.propertyName == 'transform') e.target.classList.remove('piano-key-active');
+  e.target.classList.remove('piano-key-active');
 }
-
 // Mouse events
 function handleMouseEvent(e) {
   if (!isClicked) return;
@@ -28,12 +27,12 @@ pianoKeys.forEach((key) =>
   })
 );
 
-window.addEventListener('mouseup', () => (isClicked = false));
+window.addEventListener('mouseup', (e) => (isClicked = false));
 pianoKeys.forEach((key) => key.addEventListener('mouseover', handleMouseEvent));
+pianoKeys.forEach((key) => key.addEventListener('mouseleave', removeTransition));
+pianoKeys.forEach((key) => key.addEventListener('mouseup', removeTransition));
 
 pianoKeys.forEach((key) => key.addEventListener('contextmenu', (e) => e.preventDefault()));
-
-pianoKeys.forEach((key) => key.addEventListener('transitionend', removeTransition));
 
 // Key events
 let keyState = {};
@@ -49,6 +48,8 @@ function handleKeyEvent(e) {
 window.addEventListener('keydown', handleKeyEvent);
 
 window.addEventListener('keyup', (e) => {
+  const elem = [...pianoKeys].find((elem) => elem.dataset.letter == e.code.slice(-1));
+  if (elem) elem.classList.remove('piano-key-active');
   keyState[e.code] = false;
 });
 
