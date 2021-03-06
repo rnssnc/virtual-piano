@@ -20,19 +20,17 @@ function handleMouseEvent(e) {
   playSound(e.target);
 }
 
-pianoKeys.forEach((key) =>
+window.addEventListener('mouseup', (e) => (isClicked = false));
+pianoKeys.forEach((key) => {
   key.addEventListener('mousedown', (e) => {
     isClicked = true;
     handleMouseEvent(e);
-  })
-);
-
-window.addEventListener('mouseup', (e) => (isClicked = false));
-pianoKeys.forEach((key) => key.addEventListener('mouseover', handleMouseEvent));
-pianoKeys.forEach((key) => key.addEventListener('mouseleave', removeTransition));
-pianoKeys.forEach((key) => key.addEventListener('mouseup', removeTransition));
-
-pianoKeys.forEach((key) => key.addEventListener('contextmenu', (e) => e.preventDefault()));
+  });
+  key.addEventListener('mouseover', handleMouseEvent);
+  key.addEventListener('mouseleave', removeTransition);
+  key.addEventListener('mouseup', removeTransition);
+  key.addEventListener('contextmenu', (e) => e.preventDefault());
+});
 
 // Key events
 let keyState = {};
