@@ -23,7 +23,6 @@ function handleMouseEvent(e) {
 window.addEventListener('mouseup', () => (isClicked = false));
 pianoKeys.forEach((key) => {
   key.addEventListener('mousedown', (e) => {
-    if (e.which != 1 && e.which != 3) return;
     isClicked = true;
     handleMouseEvent(e);
   });
