@@ -36,7 +36,7 @@ pianoKeys.forEach((key) => {
 let keyState = {};
 
 function handleKeyEvent(e) {
-  let elem = [...pianoKeys].find((elem) => elem.dataset.letter == e.code.slice(-1));
+  let elem = [...pianoKeys].find((elem) => elem.dataset.keycode == e.code);
   if (elem && !keyState[e.code]) {
     keyState[e.code] = true;
     playSound(elem);
@@ -46,7 +46,7 @@ function handleKeyEvent(e) {
 window.addEventListener('keydown', handleKeyEvent);
 
 window.addEventListener('keyup', (e) => {
-  const elem = [...pianoKeys].find((elem) => elem.dataset.letter == e.code.slice(-1));
+  const elem = [...pianoKeys].find((elem) => elem.dataset.keycode == e.code);
   if (elem) elem.classList.remove('piano-key-active');
   keyState[e.code] = false;
 });
