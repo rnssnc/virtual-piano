@@ -127,10 +127,12 @@ body {
   border-radius: 0;
   pointer-events: none;
 }
+
 .piano-key.piano-key-active::before,
 .piano-key.piano-key-active::after {
   color: #fff;
 }
+
 .piano-key::before,
 .piano-key::after {
   content: attr(data-note);
