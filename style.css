@@ -138,11 +138,6 @@ body {
   pointer-events: none;
 }
 
-.piano-key.piano-key-active::before,
-.piano-key.piano-key-active::after {
-  color: #fff;
-}
-
 .piano-key::before,
 .piano-key::after {
   content: attr(data-note);
@@ -166,8 +161,10 @@ body {
 .piano-key:hover::after {
   color: #fff;
 }
-.piano-key-active:hover:before,
-.piano-key-active:hover::after {
+.piano-key-active:hover::before,
+.piano-key-active:hover::after,
+.piano-key-active::before,
+.piano-key-active::after {
   color: #00b4a4;
 }
 .piano-key.sharp::before,
