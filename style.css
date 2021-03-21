@@ -131,6 +131,9 @@ body {
 .piano-key.sharp.piano-key-active {
   transform: scale(0.96);
 }
+.piano-key.sharp.piano-key-active {
+  transform: scale(1.04);
+}
 .piano-key.none {
   background-color: transparent;
   border: 0;
