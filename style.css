@@ -127,11 +127,15 @@ body {
   z-index: 3;
   pointer-events: auto;
 }
+.piano-key.sharp:hover {
+  background-color: #25292d;
+}
 .piano-key.piano-key-active,
 .piano-key.sharp.piano-key-active {
   transform: scale(0.96);
 }
 .piano-key.sharp.piano-key-active {
+  background-color: rgb(19 25 31);
   transform: scale(1.04);
 }
 .piano-key.none {
@@ -163,6 +167,9 @@ body {
 .piano-key:hover::before,
 .piano-key:hover::after {
   color: #fff;
+}
+.piano-key.piano-key-active {
+  background-color: #a2abb3;
 }
 .piano-key-active:hover::before,
 .piano-key-active:hover::after,
