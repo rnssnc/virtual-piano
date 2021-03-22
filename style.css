@@ -132,7 +132,7 @@ body {
 }
 .piano-key.piano-key-active,
 .piano-key.sharp.piano-key-active {
-  transform: scale(0.96);
+  transform: translatey(5px) scale(0.98);
 }
 .piano-key.sharp.piano-key-active {
   background-color: rgb(19 25 31);
